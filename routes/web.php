@@ -8,9 +8,11 @@ Route::get('/', function () {
     //    ['title' => 'Libro1'],
     //    ['title' => 'Libro2'],
     //    ['title' => 'Libro3'],
-    //];
+    // ];
+
     // $array = Book::all(); //Select * FROM books
     // return view('welcome', ['libri' => $array]);
     // dd(Book::all());
+
     return view('welcome', ['libri' => Book::all()]);
 });
