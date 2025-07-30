@@ -1,18 +1,8 @@
 <?php
 
-use App\Models\Book;
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    // $array = [
-    //    ['title' => 'Libro1'],
-    //    ['title' => 'Libro2'],
-    //    ['title' => 'Libro3'],
-    // ];
-
-    // $array = Book::all(); //Select * FROM books
-    // return view('welcome', ['libri' => $array]);
-    // dd(Book::all());
-
-    return view('welcome', ['libri' => Book::all()]);
-});
+Route::get('/', [BookController::class, 'index'])->name('books.index');
+Route::get('/aggiungi-libro', [BookController::class, 'create'])->name('books.create');
+Route::post('/salva-libro', [BookController::class, 'store'])->name('books.store');
