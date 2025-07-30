@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBookRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -20,14 +21,8 @@ class BookController extends Controller
         return view('books.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-        $request->validate([
-            'name' => ['required', 'max:100', 'string'],
-            'year' => ['nullable', 'int'],
-            'pages' => ['nullable', 'int'],
-            'cover' => ['nullable', 'string'],
-        ]);
 
         Book::create([
             'name' => $request->name,
