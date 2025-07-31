@@ -25,7 +25,7 @@ class StoreBookRequest extends FormRequest
             'name' => ['required', 'max:100', 'string'],
             'year' => ['nullable', 'integer'],
             'pages' => ['nullable', 'integer'],
-            'cover' => ['nullable', 'string'],
+            'cover' => ['nullable', 'mimes:jpg,jpeg,bmp,png,webp'],
         ];
     }
 

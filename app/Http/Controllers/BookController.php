@@ -23,12 +23,17 @@ class BookController extends Controller
 
     public function store(StoreBookRequest $request)
     {
+        $path_image = '';
+        if ($request->hasFile('cover')) {
+            $file_name = $request->file('cover')->getClientOriginalName();
+            $path_image = $request->file('cover')->storeAs('covers', $file_name, 'public');
+        }
 
         Book::create([
             'name' => $request->name,
             'year' => $request->year,
             'pages' => $request->pages,
-            'cover' => $request->cover,
+            'cover' => $path_image,
         ]);
 
         return redirect()->route('books.index')->with('success', 'Il libro é stato aggiunto alla libreria!');

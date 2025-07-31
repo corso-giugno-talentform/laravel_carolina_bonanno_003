@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{ route('books.store') }}" method="POST" class="m-5">
+    <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data" class="m-5">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Titolo del libro</label>
@@ -32,9 +32,9 @@
                 placeholder="Numero di pagine" name="pages" value={{ old('pages') }}>
         </div>
         <div class="mb-3">
-            <label for="cover" class="form-label">URL cover</label>
-            <input type="text" class="form-control @error('cover') is-invalid @enderror" id="cover"
-                placeholder="URL" name="cover" value={{ old('cover') }}>
+            <label for="formFile" class="form-label">Carica un'immagine di copertina</label>
+            <input class="form-control @error('cover') is-invalid @enderror" type="file" id="formFile"
+                name="cover" value={{ old('cover') }}>
         </div>
         <button type="submit" class="btn btn-primary mt-3">Salva</button>
     </form>
