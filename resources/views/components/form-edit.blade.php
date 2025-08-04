@@ -16,6 +16,18 @@
                 placeholder="Titolo" aria-label="Name" name="name" value="{{ $book->name }}">
         </div>
         <div class="mb-3">
+            <label for="inputAuthor" class="form-label">Autore</label>
+            <select class="form-select" name="author_id" id="inputAuthor" value="{{ $book->author_id }}">
+                <!-- sqlstate hy000 general error 1366 risolto assegnando value="null"-->
+                <option @if (!$book->author_id) selected @endif value="{{ null }}">Seleziona Autore
+                </option>
+                @foreach ($authors as $author)
+                    <option @if ($author->id == $book->author_id) selected @endif value="{{ $author->id }}">
+                        {{ $author->firstname }} {{ $author->lastname }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="mb-3">
             <label for="year" class="form-label">Anno di pubblicazione</label>
             <input type="text" class="form-control @error('year') is-invalid @enderror" id="year"
                 placeholder="Anno" aria-label="Year" name="year" value="{{ $book->year }}">

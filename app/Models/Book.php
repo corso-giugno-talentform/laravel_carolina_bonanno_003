@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    protected $fillable = ['name', 'year', 'pages', 'cover'];
+
+    protected $fillable = ['name', 'year', 'pages', 'author_id', 'cover'];
+
+    public function author() //singolare -> 1 a N
+    {
+        return $this->belongsTo(Author::class);
+    }
 }
