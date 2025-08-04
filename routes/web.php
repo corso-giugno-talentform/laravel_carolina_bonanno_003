@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [PageController::class, 'homepage'])->name('pages.homepage');
-Route::middleware(['auth'])->group(function () {
-    Route::get('/libri', [BookController::class, 'index'])->name('books.index');
-    Route::get('/libri/aggiungi-libro', [BookController::class, 'create'])->name('books.create');
-    Route::post('/libri/salva-libro', [BookController::class, 'store'])->name('books.store');
-});
+
+Route::get('/libri', [BookController::class, 'index'])->name('books.index')->middleware('auth');
+Route::get('/libri/aggiungi-libro', [BookController::class, 'create'])->name('books.create')->middleware('auth');
+Route::post('/libri/salva-libro', [BookController::class, 'store'])->name('books.store')->middleware('auth');
+
 Route::get('/libri/{book}', [BookController::class, 'show'])->name('books.show');
 Route::get('/libri/{book}/modifica', [BookController::class, 'edit'])->name('books.edit');
 Route::put('/libri/{book}/aggiorna', [BookController::class, 'update'])->name('books.update');
