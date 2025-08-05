@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+    use HasFactory;
 
     protected $fillable = ['name', 'year', 'pages', 'author_id', 'cover']; // solo relazioni 1 a N o 1 a 1, elementi singoli
 

@@ -39,6 +39,15 @@
             @endforeach
         </div>
 
+        {{-- <div class="mb-3">
+            <label for="categories[]" class="form-label">Seleziona Categoria:<br></label>
+            <select id="categories[]" class="selectpicker" multiple data-live-search="true" name="categories[]">
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">ciao</option>
+                @endforeach
+            </select>
+        </div> --}}
+
         <div class="mb-3">
             <label for="year" class="form-label">Anno di pubblicazione</label>
             <input type="text" class="form-control @error('year') is-invalid @enderror" id="year"
