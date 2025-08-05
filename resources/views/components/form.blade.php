@@ -17,12 +17,28 @@
             <label for="inputAuthor" class="form-label">Autore</label>
             <select class="form-select" name="author_id" id="inputAuthor" value={{ old('author_id') }}>
                 <!-- sqlstate hy000 general error 1366 risolto assegnando value="null"-->
-                <option selected value="{{ null }}">Seleziona Autore</option>
+                <option selected value>Seleziona Autore</option>
                 @foreach ($authors as $author)
                     <option value="{{ $author->id }}">{{ $author->firstname }} {{ $author->lastname }}</option>
                 @endforeach
             </select>
         </div>
+
+        <!-- checkboxes -->
+
+        <div class="mb-3">
+            <label for="inputCategory" class="form-label">Categoria:</label>
+            @foreach ($categories as $category)
+                <div class="form-check">
+                    <input name="categories[]" class="form-check-input" type="checkbox" value="{{ $category->id }}"
+                        id="flexCheckDefault-{{ $category->id }}">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        {{ $category->name }}
+                    </label>
+                </div>
+            @endforeach
+        </div>
+
         <div class="mb-3">
             <label for="year" class="form-label">Anno di pubblicazione</label>
             <input type="text" class="form-control @error('year') is-invalid @enderror" id="year"

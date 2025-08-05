@@ -8,3 +8,8 @@
 .img-preview {
     width: 40px;
 }
+
+.dropdown-toggle{
+    height: 40px;
+    width: 400px !important;
+}

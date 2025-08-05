@@ -13,6 +13,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('books.index') }}">Gestisci i tuoi libri</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('authors.index') }}">Autori</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('categories.index') }}">Categorie</a>
+                    </li>
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">Registrati</a>

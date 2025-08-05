@@ -6,13 +6,14 @@ use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Models\Author;
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
     public function index()
     {
-        $books = Book::simplePaginate(4);
+        $books = Book::simplePaginate(10);
 
         return view('books.index', compact('books'));
     }
@@ -20,7 +21,9 @@ class BookController extends Controller
     public function create()
     {
         $authors = Author::all();
-        return view('books.create', compact('authors'));
+        $categories = Category::all();
+
+        return view('books.create', compact('authors', 'categories'));
     }
 
     public function store(StoreBookRequest $request)
@@ -31,7 +34,7 @@ class BookController extends Controller
             $path_image = $request->file('cover')->storeAs('covers', $file_name, 'public');
         }
 
-        Book::create([
+        $book = Book::create([
             'name' => $request->name,
             'year' => $request->year,
             'pages' => $request->pages,
@@ -39,6 +42,7 @@ class BookController extends Controller
             'cover' => $path_image,
         ]);
 
+        $book->categories()->attach($request->categories);
         return redirect()->route('books.index')->with('success', 'Il libro é stato aggiunto alla libreria!');
     }
 
@@ -51,7 +55,9 @@ class BookController extends Controller
     public function edit(Book $book)
     {
         $authors = Author::all();
-        return view('books.edit', compact('book', 'authors'));
+        $categories = Category::all();
+
+        return view('books.edit', compact('book', 'authors', 'categories'));
     }
 
     public function update(Book $book, UpdateBookRequest $request)
@@ -70,12 +76,17 @@ class BookController extends Controller
             'cover' => $cover,
         ]);
 
+        $book->categories()->detach();
+        $book->categories()->attach($request->categories);
+
+        // $book->categories()->sync($request->categories);
+
         return redirect()->route('books.index')->with('success', 'Il libro é stato modificato!');
     }
 
     public function destroy(Book $book)
     {
-
+        $book->categories()->detach();
         $book->delete();
         return redirect()->route('books.index')->with('success', 'Il libro é stato eliminato!');
     }

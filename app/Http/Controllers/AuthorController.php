@@ -35,7 +35,7 @@ class AuthorController extends Controller
             'lastname' => $request->lastname,
         ]);
 
-        return redirect()->route('authors.index')->with('success', 'L\'autore è stato agiunto!');
+        return redirect()->route('authors.index')->with('success', 'L\'autore è stato aggiunto!');
     }
 
     /**
@@ -51,7 +51,7 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        return view('authors.show', compact('author'));
+        return view('authors.edit', compact('author'));
     }
 
     /**
