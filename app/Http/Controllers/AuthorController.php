@@ -13,7 +13,13 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $authors = Author::all();
+        if (request()->search) {
+            // $books = Book::where('name', 'LIKE', '%' . request()->search . '%')->get(); // Si può aggiungere orWhere()
+            $authors = Author::search(request()->search)->get();
+        } else {
+            $authors = Author::all();
+        }
+
         return view('authors.index', compact('authors'));
     }
 

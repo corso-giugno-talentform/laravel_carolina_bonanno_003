@@ -15,7 +15,8 @@ class BookController extends Controller
     {
         // $books = Book::simplePaginate(10);
         if (request()->search) {
-            $books = Book::where('name', 'LIKE', '%' . request()->search . '%')->get(); // Si può aggiungere orWhere()
+            // $books = Book::where('name', 'LIKE', '%' . request()->search . '%')->get(); // Si può aggiungere orWhere()
+            $books = Book::search(request()->search)->get();
         } else {
             $books = Book::all();
         }

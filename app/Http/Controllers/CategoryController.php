@@ -13,7 +13,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        if (request()->search) {
+            // $books = Book::where('name', 'LIKE', '%' . request()->search . '%')->get(); // Si può aggiungere orWhere()
+            $categories = Category::search(request()->search)->get();
+        } else {
+            $categories = Category::all();
+        }
+
         return view('categories.index', compact('categories'));
     }
 

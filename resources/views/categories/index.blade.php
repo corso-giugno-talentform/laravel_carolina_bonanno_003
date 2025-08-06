@@ -4,9 +4,14 @@
         <div class="container mt-5">
             <div class="align-middle gap-2 d-flex justify-content-between">
                 <h3>Elenco autori inseriti</h3>
-                <form class="d-flex" role="search" action="#" method="POST">
-                    <input class="form-control me-2" name="search" type="search" placeholder="Cerca Categoria"
-                        aria-label="Search">
+                <form class="d-flex" role="search" action="{{ route('categories.index') }}" method="GET">
+
+                    <div class="input-group">
+                        <input name="search" type="search" class="form-control" placeholder="Cerca Categoria"
+                            aria-label="Cerca Categoria">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cerca</button>
+                    </div>
+
                 </form>
                 <a class="btn btn btn-success me-md-2" href="{{ route('categories.create') }}">Aggiungi nuova
                     Categoria</a>
