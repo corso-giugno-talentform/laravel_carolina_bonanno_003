@@ -24,8 +24,8 @@
             </select>
         </div>
 
-        <!-- checkboxes -->
-
+        {{-- 
+        // Checkbox
         <div class="mb-3">
             <label for="inputCategory" class="form-label">Categoria:</label>
             @foreach ($categories as $category)
@@ -37,16 +37,17 @@
                     </label>
                 </div>
             @endforeach
-        </div>
+        </div> --}}
 
-        {{-- <div class="mb-3">
-            <label for="categories[]" class="form-label">Seleziona Categoria:<br></label>
-            <select id="categories[]" class="selectpicker" multiple data-live-search="true" name="categories[]">
+        <div class="mb-3">
+            <label for="inputCategory" class="form-label">Categoria:</label>
+            <select class="form-select" name="categories[]" id="multiple-select-field" data-placeholder="Cerca..."
+                multiple>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">ciao</option>
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
-        </div> --}}
+        </div>
 
         <div class="mb-3">
             <label for="year" class="form-label">Anno di pubblicazione</label>

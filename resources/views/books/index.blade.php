@@ -4,9 +4,14 @@
         <div class="container mt-5">
             <div class="align-middle gap-2 d-flex justify-content-between">
                 <h3>Elenco libri inseriti</h3>
-                <form class="d-flex" role="search" action="#" method="POST">
-                    <input class="form-control me-2" name="search" type="search" placeholder="Cerca Libro"
-                        aria-label="Search">
+                <form class="d-flex" role="search" action="{{ route('books.index') }}" method="GET">
+
+                    <div class="input-group">
+                        <input name="search" type="search" class="form-control" placeholder="Cerca Libro"
+                            aria-label="Cerca Libro">
+                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Cerca</button>
+                    </div>
+
                 </form>
                 <a class="btn btn btn-success me-md-2" href="{{ route('books.create') }}">Aggiungi nuovo libro</a>
             </div>
@@ -82,6 +87,6 @@
                 </tbody>
             </table>
         </div>
-        {{ $books->links() }} <!-- Posso pastare view $books->links('viewname') -->
+        {{-- Pagination: {{ $books->links() }} <!-- Posso pastare view $books->links('viewname') --> --}}
     </div>
 </x-layout>

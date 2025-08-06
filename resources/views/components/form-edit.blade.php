@@ -28,6 +28,9 @@
             </select>
         </div>
 
+        {{-- 
+        // Checkbox
+        
         <div class="mb-3">
             <label for="inputCategory" class="form-label">Categoria:</label>
             @foreach ($categories as $category)
@@ -39,6 +42,17 @@
                     </label>
                 </div>
             @endforeach
+        </div> --}}
+
+        <div class="mb-3">
+            <label for="inputCategory" class="form-label">Categoria:</label>
+            <select class="form-select" name="categories[]" id="multiple-select-field" data-placeholder="Cerca..."
+                multiple>
+                @foreach ($categories as $category)
+                    <option @if ($book->categories->contains($category->id)) selected @endif value="{{ $category->id }}">
+                        {{ $category->name }}</option>
+                @endforeach
+            </select>
         </div>
 
 
