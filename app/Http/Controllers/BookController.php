@@ -14,14 +14,14 @@ class BookController extends Controller
     public function index()
     {
         // $books = Book::simplePaginate(10);
-        if (request()->search) {
+        /* if (request()->search) {
             // $books = Book::where('name', 'LIKE', '%' . request()->search . '%')->get(); // Si può aggiungere orWhere()
             $books = Book::search(request()->search)->get();
         } else {
             $books = Book::all();
-        }
+        } */
 
-        return view('books.index', compact('books'));
+        return view('books.index'); // compact('books')
     }
 
     public function create()
